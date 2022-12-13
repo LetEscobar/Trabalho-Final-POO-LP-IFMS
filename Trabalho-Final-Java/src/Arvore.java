@@ -1,65 +1,65 @@
 public class Arvore {
     No root = null;
 
-    // Inserindo elementos
-    void insert(int info, No local) {
-        // se o nó estiver vazio:
-        if (local == null) {
-            System.out.print(" " + info);
+    // Inserindo os elementos:
+    void insert(int info, No no) {
+        // se o nó raiz estiver vazio, vou inserir o elemento nele
+        if (no == null) {
             root = new No(info);
         }
         // se o valor a ser inserido for MENOR que o valor do nó,
         // eu devo inserir à esquerda:
-        else if (info < local.info) {
-            if (local.esquerda == null) {
-                System.out.print(" " + info);
-                local.esquerda = new No(info);
+        else if (info < no.info) {
+            if (no.esquerda == null) {
+                no.esquerda = new No(info);
             } else {
-                insert(info, local.esquerda);
+                insert(info, no.esquerda);
             }
         }
         // se o valor a ser inserido for MAIOR que o valor do nó,
         // eu devo inserir à direita:
-        else if (info > local.info) {
-            if (local.direita == null) {
-                System.out.print(" " + info);
-                local.direita = new No(info);
+        else if (info > no.info) {
+            if (no.direita == null) {
+                no.direita = new No(info);
             } else {
-                insert(info, local.direita);
+                insert(info, no.direita);
             }
         }
     }
 
-    // imprimindo em preOrdem
-    void preOrdem(No local) {
-        System.out.print(" " + local.info);
-        if (local.esquerda != null) {
-            preOrdem(local.esquerda);
+    // imprimindo preOrdem
+    // raiz - esquerda - direita
+    void preOrdem(No no) {
+        System.out.print(" " + no.info);
+        if (no.esquerda != null) {
+            preOrdem(no.esquerda);
         }
-        if (local.direita != null) {
-            preOrdem(local.direita);
+        if (no.direita != null) {
+            preOrdem(no.direita);
         }
     }
 
     // imprimindo inOrdem
-    void inOrdem(No local) {
-        if (local.esquerda != null) {
-            inOrdem(local.esquerda);
+    // esquerda - raiz - direita
+    void inOrdem(No no) {
+        if (no.esquerda != null) {
+            inOrdem(no.esquerda);
         }
-        System.out.print(" " + local.info);
-        if (local.direita != null) {
-            inOrdem(local.direita);
+        System.out.print(" " + no.info);
+        if (no.direita != null) {
+            inOrdem(no.direita);
         }
     }
 
     // imprimindo posOrdem
-    void posOrdem(No local) {
-        if (local.esquerda != null) {
-            posOrdem(local.esquerda);
+    // esquerda - direita - raiz
+    void posOrdem(No no) {
+        if (no.esquerda != null) {
+            posOrdem(no.esquerda);
         }
-        if (local.direita != null) {
-            posOrdem(local.direita);
+        if (no.direita != null) {
+            posOrdem(no.direita);
         }
-        System.out.print(" " + local.info);
+        System.out.print(" " + no.info);
     }
 }
