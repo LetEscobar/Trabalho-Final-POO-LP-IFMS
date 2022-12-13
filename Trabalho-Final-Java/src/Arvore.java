@@ -9,30 +9,36 @@ public class Arvore {
 
     // Inserindo os elementos:
     void insert(int valor, No no) {
-        // se o nó raiz estiver vazio, vou inserir o elemento nele
         if (no == null) {
             root = new No(valor);
+            inserirNoBanco(valor);
         }
-        // se o valor a ser inserido for MENOR que o valor do nó,
-        // eu devo inserir à esquerda:
+
         else if (valor < no.valor) {
             if (no.esquerda == null) {
                 no.esquerda = new No(valor);
+                inserirNoBanco(valor);
             } else {
                 insert(valor, no.esquerda);
             }
         }
-        // se o valor a ser inserido for MAIOR que o valor do nó,
-        // eu devo inserir à direita:
+
         else if (valor > no.valor) {
             if (no.direita == null) {
                 no.direita = new No(valor);
+                inserirNoBanco(valor);
             } else {
                 insert(valor, no.direita);
             }
         }
 
-        // Salvando os números inseridos no banco
+        else if (valor == no.valor) {
+            System.out.println("Esse número já foi inserido.");
+        }
+
+    }
+
+    public void inserirNoBanco(int valor) {
         this.conn = ConnectionFactory.createConnection();
         String noSQL = "INSERT INTO tree (node) VALUES (?)";
         try {
@@ -41,12 +47,33 @@ public class Arvore {
 
             ps.executeUpdate();
 
-            System.out.println("Nó inserido!");
+            System.out.println("Valor inserido no banco!");
 
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
+
+    // public No getOne(int valor) {
+    // String sql = "SELECT * FROM tree WHERE node = ?";
+    // No node = new No(valor);
+
+    // try {
+    // PreparedStatement ps = this.conn.prepareStatement(sql);
+    // ps.setInt(1, valor);
+
+    // ResultSet result = ps.executeQuery(sql);
+
+    // while (result.next()) {
+    // u.setId(rs.getInt("id"));
+    // }
+
+    // } catch (SQLException e) {
+    // System.out.println("Error: Não foi possível encontrar o valor!");
+    // }
+
+    // return node;
+    // }
 
     // imprimindo preOrdem
     // raiz - esquerda - direita
