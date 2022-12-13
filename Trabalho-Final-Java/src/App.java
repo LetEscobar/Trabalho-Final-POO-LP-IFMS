@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
+        ConnectionFactory.createConnection();
         Arvore arvore = new Arvore();
 
         int opcao = 0;
@@ -12,7 +13,7 @@ public class App {
             Scanner lerOpcao = new Scanner(System.in);
             Scanner lerNumero = new Scanner(System.in);
 
-            System.out.println("--------------------------------------------");
+            System.out.println("\n--------------------------------------------");
             System.out.println(" 1 - Inserir números na árvore binária");
             System.out.println(" 2 - Buscar por um número na árvore binária");
             System.out.println(" 3 - Imprimir árvore binária completa");
@@ -39,7 +40,7 @@ public class App {
                 case 2:
                     System.out.print("\nInforme o número que deseja procurar: ");
                     numero = lerNumero.nextInt();
-                    System.out.println("\n\n BUSCA EM PÓS ORDEM:");
+                    System.out.println("\n BUSCA");
                     break;
                 case 3:
                     System.out.println("Árvore binária completa:");
