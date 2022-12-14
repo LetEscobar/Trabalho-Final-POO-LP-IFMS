@@ -1,7 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.cj.xdevapi.Statement;
 
 public class Arvore {
     No root = null;
@@ -53,27 +54,6 @@ public class Arvore {
             System.out.println(e);
         }
     }
-
-    // public No getOne(int valor) {
-    // String sql = "SELECT * FROM tree WHERE node = ?";
-    // No node = new No(valor);
-
-    // try {
-    // PreparedStatement ps = this.conn.prepareStatement(sql);
-    // ps.setInt(1, valor);
-
-    // ResultSet result = ps.executeQuery(sql);
-
-    // while (result.next()) {
-    // u.setId(rs.getInt("id"));
-    // }
-
-    // } catch (SQLException e) {
-    // System.out.println("Error: Não foi possível encontrar o valor!");
-    // }
-
-    // return node;
-    // }
 
     // imprimindo preOrdem
     // raiz - esquerda - direita

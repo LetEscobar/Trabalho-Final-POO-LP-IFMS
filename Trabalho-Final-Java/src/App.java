@@ -15,8 +15,7 @@ public class App {
 
             System.out.println("\n--------------------------------------------");
             System.out.println(" 1 - Inserir números na árvore binária");
-            System.out.println(" 2 - Buscar por um número na árvore binária");
-            // System.out.println(" 3 - Imprimir árvore binária completa");
+            System.out.println(" 2 - Imprimir árvore binária");
             System.out.println(" 0 - Sair");
             System.out.println("--------------------------------------------");
             System.out.print("Escolha uma das opções: ");
@@ -38,21 +37,16 @@ public class App {
                     } while (numero != 0);
                     break;
                 case 2:
-                    System.out.print("\nInforme o número que deseja procurar: ");
-                    numero = lerNumero.nextInt();
-                    System.out.println("\n BUSCA");
+                    System.out.print("\nÁrvore binária:");
+                    System.out.println("\n Pré-ordem::");
+                    arvore.preOrdem(arvore.root);
+
+                    System.out.println("\n In-ordem:");
+                    arvore.inOrdem(arvore.root);
+
+                    System.out.println("\n Pós-ordem:");
+                    arvore.posOrdem(arvore.root);
                     break;
-                // case 3:
-                // System.out.println("Árvore binária completa:");
-                // System.out.println("\n PRE-ORDEM:");
-                // arvore.preOrdem(arvore.root);
-
-                // System.out.println("\n IN-ORDEM:");
-                // arvore.inOrdem(arvore.root);
-
-                // System.out.println("\n POS-ORDEM:");
-                // arvore.posOrdem(arvore.root);
-                // break;
                 default:
                     System.out.println("Opção inválida!");
                     break;
