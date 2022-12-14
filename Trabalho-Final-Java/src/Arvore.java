@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.cj.xdevapi.Statement;
 
@@ -12,13 +14,13 @@ public class Arvore {
     void insert(int valor, No no) {
         if (no == null) {
             root = new No(valor);
-            inserirNoBanco(valor);
+            // inserirNoBanco(valor);
         }
 
         else if (valor < no.valor) {
             if (no.esquerda == null) {
                 no.esquerda = new No(valor);
-                inserirNoBanco(valor);
+                // inserirNoBanco(valor);
             } else {
                 insert(valor, no.esquerda);
             }
@@ -27,7 +29,7 @@ public class Arvore {
         else if (valor > no.valor) {
             if (no.direita == null) {
                 no.direita = new No(valor);
-                inserirNoBanco(valor);
+                // inserirNoBanco(valor);
             } else {
                 insert(valor, no.direita);
             }
@@ -50,6 +52,29 @@ public class Arvore {
 
             System.out.println("Valor inserido no banco!");
 
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void buscarDoBanco(Arvore arvore) {
+        String sql = "SELECT * FROM tree";
+        ArrayList<Integer> valores = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            for (int i = 0; i < valores.size(); i++) {
+                valores.add(rs.getInt("node"));
+            }
+            for (int i = 0; i < valores.size(); i++) {
+                arvore.insert(valores.get(i), root);
+            }
+
+            int valor = valores.get(1);
+            No node = new No(valor);
         } catch (SQLException e) {
             System.out.println(e);
         }

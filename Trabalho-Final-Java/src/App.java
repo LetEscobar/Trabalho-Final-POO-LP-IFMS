@@ -33,6 +33,7 @@ public class App {
                         numero = lerNumero.nextInt();
                         if (numero != 0) {
                             arvore.insert(numero, arvore.root);
+                            arvore.inserirNoBanco(numero);
                         }
                     } while (numero != 0);
                     break;
